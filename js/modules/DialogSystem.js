@@ -10,10 +10,15 @@ class DialogSystem {
         this.speaker.innerText = 'Dummy text'
         this.speaker.classList.add('hide')
         this.text = document.createElement('div')
-
+        this.text.classList.add('dialog-system-container-text')
+        //suggested from sorgindigitala
+        this.visible = document.createElement('span')
+        this.invisible = document.createElement('span')
+        this.invisible.classList.add('invisible')
+        this.text.appendChild(this.visible)
+        this.text.appendChild(this.invisible)
         this.container.appendChild(this.speaker)
         this.container.appendChild(this.text)
-
         this.t = 0
         this.string = ''
     }
@@ -30,7 +35,8 @@ class DialogSystem {
             if (this.t != 0) {
                 clearInterval(this.t)
                 this.t = 0
-                this.text.innerHTML = this.string
+                this.visible.innerText = this.string
+                this.invisible.innerText = ''
                 return
             }
             if (!this.fetch()) {
@@ -56,9 +62,10 @@ class DialogSystem {
                 this.t = 0
                 return
             }
-            let buffer = (this.string).slice(0, index) + "<span class='invisible'>" + (this.string).slice(index) + "</span>";
-            this.text.innerHTML = buffer
 
+            this.visible.innerText = (this.string).slice(0, index)
+            this.invisible.innerText = (this.string).slice(index)
+            // let buffer = (this.string).slice(0, index) + "<span class='invisible'>" + (this.string).slice(index) + "</span>";
         }, 50);
         return true
     }

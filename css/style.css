@@ -46,10 +46,12 @@ body{
     margin-top: -2.5em;
     left: 50%;
     margin-left: -11em;
+    user-select: none;
 }
 .dialog-system-container-speaker{
     font-weight: bolder;
     font-style: italic;
+    user-select: none;
 }
 .dialog-system-container-speaker::before,
 .dialog-system-container-speaker::after{
@@ -58,3 +60,6 @@ body{
 .invisible{
     color: transparent;
 }
+/* .dialog-system-container-text{
+    user-select: none;
+} */
